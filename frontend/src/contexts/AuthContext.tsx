@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext } from 'react';
 import type { ReactNode } from 'react';
 
 interface User {
@@ -35,7 +35,7 @@ const LOCAL_USER: User = {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<User>(LOCAL_USER);
+  const user = LOCAL_USER;
   const token = 'local-community-token';
 
   const login = () => {};

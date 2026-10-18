@@ -1,8 +1,7 @@
 import { useState } from 'react';
-import { Outlet, Link, useLocation, useNavigate } from 'react-router-dom';
+import { Outlet, Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  LogOut, 
   Menu, 
   X, 
   ChevronDown, 
@@ -11,13 +10,10 @@ import {
   Activity,
   UserCircle
 } from 'lucide-react';
-import { useAuth } from '../contexts/AuthContext';
 import { TOOL_CATEGORIES } from '../data/tools';
 
 export const SaaSLayout = () => {
-  const { user, logout } = useAuth();
   const location = useLocation();
-  const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [expandedCategories, setExpandedCategories] = useState<string[]>([TOOL_CATEGORIES[0].title]);
   const [searchQuery, setSearchQuery] = useState('');
@@ -36,13 +32,6 @@ export const SaaSLayout = () => {
         : [...prev, title]
     );
   };
-
-  const handleLogout = () => {
-    logout();
-    navigate('/');
-  };
-
-  const generateSlug = (name: string) => name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
 
   return (
     <div className="flex h-screen bg-[#09090b] text-zinc-100 overflow-hidden font-sans">
